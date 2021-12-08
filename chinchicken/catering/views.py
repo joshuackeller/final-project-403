@@ -1,9 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def cateringPageView(request):
-    return(HttpResponse('Catering page view'))
+    return render(request, 'catering/catering.html')
 
 def editCateringPageView(request):
-    return(HttpResponse('Edit catering page view'))
+   return render(request, 'catering/editCatering.html')
 

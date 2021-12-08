@@ -1,20 +1,11 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def indexPageView(request):
-    output = '''
-        <html>
-            <head>
-                <title>Index</title>
-            </head>
-            <body>
-                <h1>Index Page View</h1>
-            </body>
-        </html>
-    '''
-    return(HttpResponse(output))
+    return render(request, "menu/index.html")
 
 def menuPageView(request):
-    return(HttpResponse('Menu page view'))
+    return render(request, "menu/menu.html")
 
 def editMenuPageView(request):
-    return(HttpResponse('Edit menu page view'))
+    return render(request, "menu/editMenu.html")
