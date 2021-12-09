@@ -1,10 +1,11 @@
 from django.db import models
 from django.db.models.fields import DateTimeField
+import datetime
 
 
 class Menu_Item(models.Model):
     name = models.CharField(max_length=50)
-    price = models.FloatField
+    price = models.FloatField(default=0)
     photo_main = models.ImageField(upload_to='photos')    
 
     class Meta:
@@ -31,8 +32,8 @@ class Catering_Event(models.Model):
     city = models.CharField(max_length=25)
     state = models.CharField(max_length=25)
     zip = models.CharField(max_length=15)
-    datetime = models.DateTimeField
-    cost = models.FloatField
+    datetime = models.DateTimeField(default=datetime.datetime.now)
+    cost = models.FloatField(default=0)
     customerID = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
     menu_items = models.ManyToManyField(Menu_Item, blank=True)
 

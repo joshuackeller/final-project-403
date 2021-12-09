@@ -1,7 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<h1>Index</h1>
-<p className="test-class">Testing</p>
+<div style="height: 200px; background-color: #ef4444">
+  <div
+    style="
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 60px 5px 10px 5px;
+    "
+  >
+    <div style="text-align: center; font-size: 53px; font-weight: bold; color: white">
+      Chin Chicken is Delicious
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; background-color: #f9f9f9; padding: 30px 0 15px 0; font-size: 18px">
+  <div style="max-width: 700px; margin: 0px auto 0px auto">
+    <h1 class="mb-5">Chin Brothers</h1>
+    <br><br>
+    <h2>Family Business. Provo, UT.</h2>
+    <br><br>
+    <h3>
+      Nicholas and Donovan Chin hoping to help you enjoy something that’s both
+      healthy and affordable. DM us for more info 🐔🥡🍽
+    </h3>
+    <br>
+    <button
+    style="border-radius: 8px;"
+    onclick="window.location.href='https://www.instagram.com/chin_chicken/';"
+    >
+      Check out our Instagram
+    </button>
+    <br><br>
+    <div style="margin-right: 10px">
+      <img src={% static 'images/chinbro.jpg'%}/>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

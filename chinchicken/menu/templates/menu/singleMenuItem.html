@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<div style="height: 200px; background-color: #EF4444;">
+    <div style="max-width: 1000px; margin-left: auto; margin-right: auto; padding: 60px 5px 10px 5px;">
+        <div style="font-size: 53px; font-weight: bold; color: white; ">
+            {{item.name}}
+        </div>
+    </div>
+</div>
+<div style="background-color: #F9F9F9; padding: 30px 0 15px 0; font-size: 18px;">
+    <div style="max-width: 600px; margin: 0px auto 30px auto; ">
+        <div style="margin: 0 auto 0 auto;">
+            <div style="font-weight: bold; font-size: 24px;">
+                COST: ${{item.price|floatformat:2}}
+            </div>
+            <img class="mt-30" src="{{item.photo_main.url}}" width="500"/>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

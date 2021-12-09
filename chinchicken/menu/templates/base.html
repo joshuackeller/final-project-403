@@ -1,18 +1,99 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <title>Chin Chicken</title>
+        <link href={% static '/css/styles.css'%} rel="stylesheet" />
     </head>
     <body>
-        <h1>Base Test</h1>
-        <p>Testing</p>
-        <div >
-        <p>
-            Div test
-        </p>
+        <div class="navbarContainer">
+            <div class="navbarWrap">
+                <div class="headerWrap">
+                    <a href="/">
+                        <div style="display: flex;">
+                            <div style="margin-right: 10px;">
+                                <img style="height: 40p; width: 40px; " src={% static 'images/ChinChicken.png'%}/>
+                            </div>
+                            <div class="headerTitle" style="margin: auto 0 auto 0">Chin Chicken</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="navbarItems" >
+                    <a class="navbarItem" href={% url 'catering' %}>Catering</a>
+                    <a class="navbarItem" href={% url 'menu' %}>Menu</a>
+                    <a class="altNavbarItem" href={% url 'about' %}>
+                        Learn More
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="caretIcon">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.96967 7.46967C10.2626 7.17678 10.7374 7.17678 11.0303 7.46967L15.0303 11.4697C15.3232 11.7626 15.3232 12.2374 15.0303 12.5303L11.0303 16.5303C10.7374 16.8232 10.2626 16.8232 9.96967 16.5303C9.67678 16.2374 9.67678 15.7626 9.96967 15.4697L13.4393 12L9.96967 8.53033C9.67678 8.23744 9.67678 7.76256 9.96967 7.46967Z" fill="black"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
-        {% block content%}
+        
+       
+        {% block content %}
         {% endblock %}
+   
+
+        <div class="footerContainer">
+            <div>
+                <div class="footerTitle">
+                    Prescriber
+                    <hr/>
+                </div>
+                <div class="footerItems">
+                    <a class="footerItem" >
+                        Search Prescribers
+                    </a>
+                    <a class="footerItem" >
+                        Add Prescriber
+                    </a>
+                    <a class="footerItem" >
+                        Edit/Delete Prescribers
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="footerTitle">
+                    Drugs
+                    <hr/>
+                </div>
+                <div class="footerItems">
+                    <a class="footerItem" >
+                        Search Drugs
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="footerTitle">
+                    ML Models
+                    <hr/>
+                </div>
+                <div class="footerItems">
+                    <a class="footerItem" >
+                        Recommender
+                    </a>
+                    <a class="footerItem" >
+                        Predictor
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="footerTitle">
+                    Learn More
+                    <hr/>
+                </div>
+                <div class="footerItems">
+                    <a class="footerItem" >
+                        History
+                    </a>
+                    <a class="footerItem" >
+                        Tableau
+                    </a>
+                </div>
+            </div>
+            
+        </div>
     </body>
 </html>

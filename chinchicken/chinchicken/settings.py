@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'menu.apps.MenuConfig',
     'catering.apps.CateringConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
