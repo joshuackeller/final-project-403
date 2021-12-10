@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div style="height: 200px; background-color: #93C5FD;">
+<div style="height: 200px; background-color: #EF4444;">
     <div style="max-width: 1000px; margin-left: auto; margin-right: auto; padding: 60px 5px 10px 5px;">
         <div style="font-size: 53px; font-weight: bold; color: white; ">
             ADD CATERING EVENT 
@@ -10,74 +10,73 @@
 </div>
 <div style="background-color: #F9F9F9; padding: 30px 0 300px 0;">
     <div style="max-width: 700px; margin: 0px auto 0px auto; background-color: white; padding: 30px; border-radius: 10px;">
-        <form method=POST action={% url 'add_Catering'%}>
+        <form method=POST action={% url 'addCatering'%}>
             {% csrf_token %}
             <div style="margin-bottom: 20px; display: flex; justify-content: space-between;">
                 <div style="width: 45%">
                     <label>Event Name:</label>
-                    <input type="text" placeholder="Event Name" name="event_name" 
+                    <input type="text" placeholder="Bob's Party" name="eventName" 
                     style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
                         background-color: #F9F9F9; font-size: 18px; display: block;"/>
                 </div>
                 <div style="width: 45%">
                     <label>Address:</label>
-                    <input type="text" placeholder="Address" name="address" 
-                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
-                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
-                </div>
-                <div style="width: 45%">
-                    <label>City:</label>
-                    <input type="text" placeholder="City" name="city" 
-                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
-                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
-                </div>
-                <div style="width: 45%">
-                    <label>State:</label>
-                    <input type="text" placeholder="State" name="state" 
-                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
-                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
-                </div>
-                <div style="width: 45%">
-                    <label>Zip</label>
-                    <input type="text" placeholder="Zip" name="zip" 
-                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
-                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
-                </div>
-                <div style="width: 45%">
-                    <label>Datetime:</label>
-                    <input type="text" placeholder="Datetime" name="datetine" 
-                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
-                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
-                </div>
-                <div style="width: 45%">
-                    <label>Cost:</label>
-                    <input type="text" placeholder="Cost" name="cost" 
-                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
-                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
-                </div>
-                <div style="width: 45%">
-                    <label>Menu item:</label>
-                    <input type="text" placeholder="Menu" name="menu_items" 
+                    <input type="text" placeholder="1234 Testing Dr." name="address" 
                     style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
                         background-color: #F9F9F9; font-size: 18px; display: block;"/>
                 </div>
             </div>
             <div style="margin-bottom: 20px; display: flex; justify-content: space-between;">
+                <div style="width: 45%">
+                    <label>City:</label>
+                    <input type="text" placeholder="Provo" name="city" 
+                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
+                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
+                </div>
 
                  <div style="width: 45%">
-                    <label>Customer Menu:</label>
-                    <select style="display: block" name="pState">
-                        {% for s in states %}
-                            <option value={{s.id}}>{{s.stateName}}</option>
-                        {% endfor %}
-                    </select>
+                    <label>State:</label>
+                    <input type="text" placeholder="UT" name="state" 
+                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
+                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
                 </div> 
             </div>
+            <div style="margin-bottom: 20px; display: flex; justify-content: space-between;">
+                <div style="width: 45%"> 
+                    <label>Zipcode:</label>
+                    <input type="number" placeholder="84606" name="zipcode" 
+                    style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
+                        background-color: #F9F9F9; font-size: 18px; display: block;"/>
+                </div>
+                <div style="width: 45%">
+                    <label style="display: block">Date and Time:<label>
+                        <input type="datetime-local" name="datetime" 
+                        style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
+                            background-color: #F9F9F9; font-size: 18px; display: block;"/>
+                </div>
+            </div> 
+            <div style="margin-bottom: 20px; display: flex; justify-content: space-between;">
+                <div style="width: 45%"> 
+                    <label style="display: block">Cost:<label>
+                        <input type="number" step="0.01" name="cost" 
+                        style="border: 0px; border-bottom: 1px #272727 solid; width: 100%; padding: 14px 0 14px 0
+                            background-color: #F9F9F9; font-size: 18px; display: block;"/>
+                </div>
+                <div style="width: 45%">
+                    <label style="display: block">Customer<label>
+                        <select style="display: block" name="customer">
+                                <option value="none">None</option>
+                            {% for c in customers %}
+                                <option value={{c.id}}>{{c.first_name}} {{c.last_name}}</option>
+                            {% endfor %}
+                        </select>
+                </div>
+            </div> 
         
     
             <div style="display: flex; justify-content: center;">
                 <button type="submit" class="submitButton" style="width: 400px; color: white;">
-                    Submit 
+                    Add Catering Event
                 </button>
             </div>
         </form>

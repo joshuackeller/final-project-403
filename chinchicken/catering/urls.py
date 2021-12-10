@@ -1,9 +1,12 @@
 from django.urls import path
-from .views import cateringPageView, deleteCateringPageView, editCateringPageView, addCateringPageView
+from .views import addEventMenuItemsPageView, cateringPageView, deleteCateringPageView, editCateringPageView, addCateringPageView, removeEventMenuItemPageView, singleCateringPageView
 
 urlpatterns = [
     path("catering/", cateringPageView, name="catering"), 
-    path("edit_catering/", editCateringPageView, name="edit_catering"), 
-    path("add_catering/", addCateringPageView, name="add_catering"),
-    path('delete_catering/<int:cust_id>/', deleteCateringPageView, name = 'delete_catering'),
+    path("editCatering/<id>/", editCateringPageView, name="editCatering"), 
+    path("addCatering", addCateringPageView, name="addCatering"),
+    path('deleteCatering/<id>/', deleteCateringPageView, name = 'deleteCatering'),
+    path('singleCatering/<id>/', singleCateringPageView, name="singleCatering"),
+    path('addEventMenuItem/<id>/', addEventMenuItemsPageView, name="addEventMenuItem"),
+    path('removeEventMenuItem/<eventId>/<menuItemId>/', removeEventMenuItemPageView, name="removeEventMenuItem")
 ] 

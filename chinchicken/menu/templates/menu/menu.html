@@ -43,7 +43,7 @@
                 {{item.name | upper}} 
             </div>
             <div>
-                <a style="text-decoration: none; color: black; margin-right: 20px;" href={% url 'editMenuItem' item.id%}>
+                <a style="text-decoration: none; color: black; margin-right: 20px;" href={% url 'editMenuItem' id=item.id%}>
                     Edit
                 </a>
                 <a style="color: red; text-decoration: none;" href={% url 'deleteMenuItem' id=item.id%}>

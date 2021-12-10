@@ -4,7 +4,7 @@
 <div style="height: 200px; background-color: #EF4444;">
     <div style="max-width: 1000px; margin-left: auto; margin-right: auto; padding: 60px 5px 10px 5px;">
         <div style="font-size: 53px; font-weight: bold; color: white; ">
-            ADD MENU ITEM
+            EDIT MENU ITEM
         </div>
     </div>
 </div>
@@ -30,14 +30,40 @@
                 style="padding: 14px 0 14px 0
                     background-color: #F9F9F9; font-size: 18px;"/>
             </div> {% endcomment %}
+            
             <div style="margin-bottom: 30px;">
-            {{ form.as_p }}
+                {{ form.as_p }}
             </div>
-            <button type="submit" class="submitButton" style="width: 100%; margin-top: 30px;">
-                Add Menu Item
+            <button type="submit" class="submitButton" style="width: 100%; margin-top:30px">
+                Edit Menu Item
             </button>
     
         </form>
+        {% comment %} <form method=POST action={% url 'addMenuItem'%}> 
+            {% csrf_token %}
+            <div style="margin-bottom: 20px; ">
+                <label>Item Name:</label>
+                <input type="text" placeholder="Search Menu Item" name="itemName" 
+                style="border: 0px; border-bottom: 1px #272727 solid; width: 85%; padding: 14px 0 14px 0
+                    background-color: #F9F9F9; font-size: 18px;"/>
+            </div>
+            <div style="margin-bottom: 20px; ">
+                <label>Item Price:</label>
+                <input type="number" step="0.01" placeholder="Search Menu Item" name="itemPrice" 
+                style="border: 0px; border-bottom: 1px #272727 solid; width: 85%; padding: 14px 0 14px 0
+                    background-color: #F9F9F9; font-size: 18px;"/>
+            </div>
+            <div style="margin-bottom: 20px; ">
+                <label>Item Image:</label>
+                <input type="file" name="itemImage" 
+                style="padding: 14px 0 14px 0
+                    background-color: #F9F9F9; font-size: 18px;"/>
+            </div>
+            <button type="submit" class="submitButton" style="width: 100%">
+                Add Menu Item
+            </button>
+    
+        </form> {% endcomment %}
     </div>
 </div>
 

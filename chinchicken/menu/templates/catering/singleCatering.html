@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<div style="height: 200px; background-color: #EF4444;">
+    <div style="max-width: 1000px; margin-left: auto; margin-right: auto; padding: 60px 5px 10px 5px;">
+        <div style="font-size: 53px; font-weight: bold; color: white; ">
+            {{event.event_name}}
+        </div>
+    </div>
+</div>
+<div style="background-color: #F9F9F9; padding: 30px 0 100px 0; font-size: 18px;">
+    <div style="max-width: 700px; margin: 0px auto 30px auto; ">
+        <div style="margin: 0 auto 0 auto;">
+            <div style=" font-size: 20px; margin-top: 20px;">
+                Event Name: {{event.event_name}}
+            </div>
+            <div style=" font-size: 20px; margin-top: 20px;">
+                Customer: {{event.customerID.first_name}} {{event.customerID.last_name}}
+            </div>
+            <div style=" font-size: 20px; margin-top: 20px;">
+                Location: {{event.address}} {{event.city}}, {{event.state}} {{event.zip}}
+            </div>
+            <div style=" font-size: 20px; margin-top: 20px;">
+                Date: {{event.datetime}}
+            </div>
+            <div style=" font-size: 20px; margin-top: 20px;">
+                COST: ${{event.cost|floatformat:2}}
+            </div>
+            <div style=" font-size: 20px; margin-top: 20px;">
+                <div>Menu Items: <span style="color: gray; font-size: 12px;">(Click on an item to see more)</span></div>
+                {%for m in event.menu_items.all%}
+                    <div style="margin-top: 10px;">
+                        <a href={%url 'singleMenuItem' m.id%} style="margin: 15px 0px 0px 20px; text-decoration: none; color: black;">- {{m.name}}
+                            <span><a href={% url "removeEventMenuItem" eventId=event.id menuItemId=m.id %} style="color: red; text-decoration: none; font-size: 12px;">Remove</a></span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div style="font-size: 20px; margin-top: 20px;">
+                <div>Add Menu Items: <span style="color: gray; font-size: 12px;">(Click on an item to see more)</span></div>
+                <form method=POST action={% url 'addEventMenuItem' id=event.id %}>
+                    {% csrf_token %}
+                    <select name="menuItem">
+                    {% for m in menuItems %}
+                        <option value={{m.id}}>{{m.name}}</option>
+                    {% endfor %}
+                    </select>
+                    <button type="submit" class="altSubmitButton">
+                        Add Menu Item
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

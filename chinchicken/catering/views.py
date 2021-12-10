@@ -3,70 +3,127 @@ from menu.models import Menu_Item, Customer, Catering_Event
 
 def cateringPageView(request):
     if request.method == 'POST':
-        sEvent_name = request.POST['event_name']
-        sAddress = request.POST['address']
-        sCity = request.POST['city']
-        sState = request.POST['state']
-        sZip = request.POST['zip']
-        dDatetime = request.POST['datetime']
-        sCost = request.POST['cost']
-        events = Catering_Event.objects.filter(event_name = sEvent_name).filter(address = sAddress).filter(city = sCity).filter(state = sState).filter(zip = sZip).filter(datetime = dDatetime).filter(Cost = sCost)
+        eventName = request.POST['eventName']
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        zipcode = request.POST['zipcode']
+        datetime = request.POST['datetime']
+        customer = request.POST['customer']
+        cost = request.POST['cost']
+        if customer == "none":
+            events = Catering_Event.objects.filter(event_name__icontains=eventName).filter(address__icontains =address).filter(city__icontains =city).filter(state__icontains=state).filter(zip__icontains =zipcode).filter(datetime__icontains=datetime).filter(cost__icontains = cost)
+        else:
+            events = Catering_Event.objects.filter(event_name__icontains=eventName).filter(address__icontains =address).filter(city__icontains =city).filter(state__icontains=state).filter(zip__icontains =zipcode).filter(datetime__icontains=datetime).filter(cost__icontains = cost).filter(customerID=customer)
+        customers = Customer.objects.all()
         context = {
-            'events': events
+            'events': events,
+             'customers': customers,
         }
     else:
         events = Catering_Event.objects.all()
+        customers = Customer.objects.all()
         context = {
-            'events': events
+            'events': events,
+            'customers': customers,
         }
     return render(request, 'catering/catering.html', context)
 
-def singleCateringPageView(request, id):
-    event = Catering_Event.objects.get(id=id)
 
+
+def singleCateringPageView(request, id):
+
+    event = Catering_Event.objects.get(id=id)
+    availableMenuItems = Menu_Item.objects.exclude(id__in=event.menu_items.all())
     context = {
-        "event": event
+        "event": event,
+        "menuItems": availableMenuItems
     }
 
-    return render(request, "menu/singleCatering.html", context)
+    return render(request, "catering/singleCatering.html", context)
 
-def editCateringPageView(request):
+def editCateringPageView(request, id):
     if request.method == 'POST':
-        cust_id = request.POST['cust_id']
-        event = Catering_Event.object.get(id=cust_id)
-        event.event_name = request.POST['event_name']
+        event = Catering_Event()
+        event.event_name = request.POST['eventName']
         event.address = request.POST['address']
         event.city = request.POST['city']
         event.state = request.POST['state']
-        event.zip = request.POST['zip']
+        event.zip = request.POST['zipcode']
         event.datetime = request.POST['datetime']
+        event.customerID = Customer.objects.get(id=request.POST['customer'])
         event.cost = request.POST['cost']
         event.save()
-        return cateringPageView(request)
-    else:
-        data = Catering_Event.objects.get(id = id)
+
+        events = Catering_Event.objects.all()
+        customers = Customer.objects.all()
         context = {
-        'record': data
+            'events': events,
+            'customers': customers,
+        }
+        return render(request, 'catering/catering.html', context)
+    else:
+        event = Catering_Event.objects.get(id = id)
+        customers = Customer.objects.all()
+        context = {
+            'event': event,
+            'customers': customers,
         }
         return render(request, 'catering/editCatering.html',context)
 
-def deleteCateringPageView(request,cust_id):
-    data = Catering_Event.objects.get(id = cust_id)
+def deleteCateringPageView(request,id):
+    data = Catering_Event.objects.get(id = id)
     data.delete()
     return cateringPageView(request)
 
 def addCateringPageView(request):
     if request.method == 'POST':
         event = Catering_Event()
-        event.event_name = request.POST['event_name']
+        event.event_name = request.POST['eventName']
         event.address = request.POST['address']
         event.city = request.POST['city']
         event.state = request.POST['state']
-        event.zip = request.POST['zip']
+        event.zip = request.POST['zipcode']
         event.datetime = request.POST['datetime']
         event.cost = request.POST['cost']
+        event.customerID = Customer.objects.get(id=request.POST['customer'])
         event.save()
-        return cateringPageView(request)
+        events = Catering_Event.objects.all()
+        customers = Customer.objects.all()
+        context = {
+            'events': events,
+            'customers': customers,
+        }
+        return render(request, 'catering/catering.html', context)
     else:
-        return render(request, 'catering/addCatering.html')
+        customers = Customer.objects.all()
+        context = {"customers":customers}
+        return render(request, 'catering/addCatering.html',context)
+
+def addEventMenuItemsPageView(request, id):
+    if request.method == 'POST':
+        event = Catering_Event.objects.get(id=id)
+        event.menu_items.add(Menu_Item.objects.get(id=request.POST['menuItem']))
+        event.save()
+        availableMenuItems = Menu_Item.objects.exclude(id__in=event.menu_items.all())
+
+        context = {
+            "event": event,
+            "menuItems": availableMenuItems
+        }
+
+        return render(request, "catering/singleCatering.html", context)
+
+def removeEventMenuItemPageView(request, eventId, menuItemId):
+    event = Catering_Event.objects.get(id=eventId)
+    event.menu_items.remove(Menu_Item.objects.get(id=menuItemId))
+    event.save()
+    availableMenuItems = Menu_Item.objects.exclude(id__in=event.menu_items.all())
+    context = {
+            "event": event,
+            "menuItems": availableMenuItems
+        }
+
+    return render(request, "catering/singleCatering.html", context)
+
         

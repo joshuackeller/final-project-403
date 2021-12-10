@@ -39,43 +39,23 @@
         <div class="footerContainer">
             <div>
                 <div class="footerTitle">
-                    Prescriber
+                    Menu
                     <hr/>
                 </div>
                 <div class="footerItems">
-                    <a class="footerItem" >
-                        Search Prescribers
-                    </a>
-                    <a class="footerItem" >
-                        Add Prescriber
-                    </a>
-                    <a class="footerItem" >
-                        Edit/Delete Prescribers
+                    <a class="footerItem" href={% url "menu"%}>
+                        See Menu
                     </a>
                 </div>
             </div>
             <div>
                 <div class="footerTitle">
-                    Drugs
+                    Catering
                     <hr/>
                 </div>
                 <div class="footerItems">
-                    <a class="footerItem" >
-                        Search Drugs
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="footerTitle">
-                    ML Models
-                    <hr/>
-                </div>
-                <div class="footerItems">
-                    <a class="footerItem" >
-                        Recommender
-                    </a>
-                    <a class="footerItem" >
-                        Predictor
+                    <a class="footerItem" href={%url "catering"%}>
+                        Search Catering Events
                     </a>
                 </div>
             </div>
@@ -85,11 +65,8 @@
                     <hr/>
                 </div>
                 <div class="footerItems">
-                    <a class="footerItem" >
-                        History
-                    </a>
-                    <a class="footerItem" >
-                        Tableau
+                    <a class="footerItem" href={%url "about"%}>
+                        About Us
                     </a>
                 </div>
             </div>
